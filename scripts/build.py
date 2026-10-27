@@ -6,6 +6,7 @@ import hashlib
 import html
 import json
 import re
+import shutil
 import zipfile
 from pathlib import Path
 
@@ -85,6 +86,8 @@ def build(root: Path = ROOT) -> Path:
             info.compress_type = zipfile.ZIP_DEFLATED
             z.writestr(info, payload, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
     (target.parent / 'SHA256SUMS').write_text(f'{hashlib.sha256(target.read_bytes()).hexdigest()}  {target.name}\n')
+    # Stable download name; VERSION inside the archive identifies the exact RC.
+    shutil.copyfile(target, root / 'Geralt Voice 3.0.0-rc.zip')
     return target
 
 

@@ -167,6 +167,9 @@ def validate(root: Path = ROOT, *, archive=False, source_only=False) -> list[str
         if not target.is_file():
             issue('missing release ZIP')
         else:
+            download = root / 'Geralt Voice 3.0.0-rc.zip'
+            if not download.is_file() or download.read_bytes() != target.read_bytes():
+                issue('root download ZIP missing or differs from release ZIP')
             try:
                 with zipfile.ZipFile(target) as z:
                     expected = package_entries(root)

@@ -17,7 +17,7 @@ class PackageTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='geralt-voice-test-')
         self.root = Path(self.temp.name)
-        for name in ['geralt-voice','docs','prompts','evaluation','VERSION','README.md','CHANGELOG.md','BENCHMARK.md','AGENTS.md','CLAUDE.md','requirements-dev.txt']:
+        for name in ['geralt-voice','docs','prompts','evaluation','VERSION','README.md','CHANGELOG.md','BENCHMARK.md','AGENTS.md','CLAUDE.md','requirements-dev.txt','geraltvoice2.2.0.zip']:
             source, target = ROOT/name, self.root/name
             if source.is_dir():
                 shutil.copytree(source, target, ignore=shutil.ignore_patterns('local','__pycache__'))
@@ -42,6 +42,9 @@ class PackageTests(unittest.TestCase):
         with zipfile.ZipFile(build(self.root)) as z:
             self.assertTrue(all(n.startswith('geralt-voice/') for n in z.namelist()))
             self.assertIn('geralt-voice/VERSION',z.namelist())
+    def test_root_download_matches_versioned_archive(self):
+        archive = build(self.root)
+        self.assertEqual((self.root/'Geralt Voice 3.0.0-rc.zip').read_bytes(), archive.read_bytes())
     def test_unexpected_installable_file(self):
         (self.root/'geralt-voice/private-log.txt').write_text('private synthetic marker')
         self.fails('unexpected installable file')

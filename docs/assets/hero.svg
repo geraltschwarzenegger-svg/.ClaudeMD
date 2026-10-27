@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+<title id="title">Geralt Voice — твоя мысль, твой голос</title><desc id="desc">Тёмная обложка с красной звуковой волной. Поддержка, юмор, флирт, уверенность. Версия 3.0, кандидат выпуска.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#171c29"/><stop offset="1" stop-color="#080b12"/></linearGradient><linearGradient id="red"><stop stop-color="#ff4545"/><stop offset="1" stop-color="#ff9975"/></linearGradient></defs>
+<rect width="1280" height="520" rx="24" fill="url(#bg)"/>
+<path d="M0 465H1280M0 410H1280M0 355H1280M880 0V520M990 0V520M1100 0V520M1210 0V520" stroke="#ffffff" stroke-opacity=".035"/>
+<rect x="64" y="56" width="242" height="34" rx="17" fill="#ff6565" fill-opacity=".12"/><text x="84" y="79" fill="#ffa69a" font-family="Arial,sans-serif" font-size="14" letter-spacing="2">PERSONAL VOICE / 3.0 RC</text>
+<text x="60" y="193" fill="#f5f4ef" font-family="Arial,sans-serif" font-weight="700" font-size="92" letter-spacing="-4">Geralt Voice</text>
+<text x="64" y="257" fill="#f5f4ef" font-family="Arial,sans-serif" font-size="36">твоя мысль, твой голос</text>
+<text x="66" y="316" fill="#aeb7c9" font-family="Arial,sans-serif" font-size="21">От тёплого ответа до спокойной жёсткости.</text>
+<text x="66" y="348" fill="#aeb7c9" font-family="Arial,sans-serif" font-size="21">Смысл остаётся твоим. Подача — по ситуации.</text>
+<path d="M850 220v80m24-124v168m24-200v232m24-284v336m24-247v158m24-112v66m24-110v154m24-231v308m24-347v386m24-310v234m24-166v98m24-121v144m24-197v250m24-176v102m24-72v42" stroke="url(#red)" stroke-width="9" stroke-linecap="round"/>
+<path d="M66 411H780" stroke="#303644"/><text x="66" y="456" fill="#f5f4ef" font-family="Arial,sans-serif" font-size="19">24 роли</text><text x="230" y="456" fill="#f5f4ef" font-family="Arial,sans-serif" font-size="19">96 примеров</text><text x="448" y="456" fill="#f5f4ef" font-family="Arial,sans-serif" font-size="19">GPT · Claude · Skills</text></svg>
