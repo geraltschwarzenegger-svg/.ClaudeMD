@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="570" viewBox="0 0 1280 570" role="img" aria-labelledby="title desc"><title id="title">Что здесь называется прошивкой</title><desc id="desc">Версия 3.0.0-rc.2 · инструкции для модели, справочники и примеры</desc><rect width="1280" height="570" rx="24" fill="#111622"/>
+<text x="48" y="60" font-family="DejaVu Sans,Arial,sans-serif" font-size="32" font-weight="700" fill="#f1f3f8">Что здесь называется прошивкой</text>
+<text x="48" y="100" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#abb8ce">Версия 3.0.0-rc.2 · инструкции для модели, справочники и примеры</text>
+<rect x="48" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="70" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#ff9b8f">01 / Ядро</text>
+<text x="70" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">SKILL.md задаёт приоритеты</text>
+<text x="70" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Смысл, факты, условия</text>
+<text x="70" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Один готовый ответ</text>
+<rect x="450" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="472" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#a2caff">02 / Твой голос</text>
+<text x="472" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Профиль и формат как с ПК</text>
+<text x="472" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">24 ситуативные роли</text>
+<text x="472" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Теплота и напор отдельно</text>
+<rect x="852" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="874" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">03 / Справочники</text>
+<text x="874" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Редактура, юмор, поддержка</text>
+<text x="874" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Йохан и Аянокоджи</text>
+<text x="874" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Глубина и личная переписка</text>
+<rect x="48" y="350" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="70" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#ff9b8f">04 / Примеры</text>
+<text x="70" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">108 синтетических примеров</text>
+<text x="70" y="461" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Иллюстрируют подачу</text>
+<text x="70" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Не факты о пользователе</text>
+<rect x="450" y="350" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="472" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#a2caff">05 / Экспорты</text>
+<text x="472" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">GPT, Claude, короткое ядро</text>
+<text x="472" y="461" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Генерируются из исходников</text>
+<text x="472" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">ZIP с папкой geralt-voice</text>
+<rect x="852" y="350" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="874" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">06 / Проверка</text>
+<text x="874" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">64 отдельных задания</text>
+<text x="874" y="461" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Тесты структуры и архива</text>
+<text x="874" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Обратная связь пользователя</text>
+</svg>

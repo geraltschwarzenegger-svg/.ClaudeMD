@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="355" viewBox="0 0 1280 355" role="img" aria-labelledby="title desc"><title id="title">Что внутри скачанного ZIP</title><desc id="desc">Одна папка geralt-voice/ · точная версия находится в VERSION</desc><rect width="1280" height="355" rx="24" fill="#111622"/>
+<text x="48" y="60" font-family="DejaVu Sans,Arial,sans-serif" font-size="32" font-weight="700" fill="#f1f3f8">Что внутри скачанного ZIP</text>
+<text x="48" y="100" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#abb8ce">Одна папка geralt-voice/ · точная версия находится в VERSION</text>
+<rect x="48" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="70" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#ff9b8f">Ядро и метаданные</text>
+<text x="70" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">SKILL.md</text>
+<text x="70" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">VERSION</text>
+<text x="70" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">agents/openai.yaml</text>
+<rect x="450" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="472" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#a2caff">references/</text>
+<text x="472" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Правила подачи и редактура</text>
+<text x="472" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Роли и банк примеров</text>
+<text x="472" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Все справочники профилей</text>
+<rect x="852" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="874" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">Остаётся в репозитории</text>
+<text x="874" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Экспорты GPT и Claude</text>
+<text x="874" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Бенчмарк, задания и тесты</text>
+<text x="874" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">README и его картинки</text>
+</svg>

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "versions": [
+    "2.2.0",
+    "3.0.0-rc.2"
+  ],
+  "pairs": 12,
+  "method": "Open author reconstruction in one Codex session after reading relevant sections of both instruction sets. Same assistant authored and reviewed both variants; not independent runs, not blind, not isolated full-context executions. Cases chosen to illustrate both shared behavior and rule differences.",
+  "model": "Current Codex assistant; exact snapshot and sampling parameters unavailable",
+  "separate_api_calls": 0,
+  "can_claim_win_rate": false,
+  "old_context": "Relevant instruction sections only; no private live-calibration examples used or reproduced.",
+  "old_members_sha256": {
+    "SKILL.md": "3c697aa93128b1bd15d5ece135a110d33cefb0f55dbfef9120f7231a4b6bc818",
+    "references/modes.md": "eb050289a2438d1b0cffb53c16d23075143d36fea7bba0541faa4a94a09bbe9a",
+    "references/stop.md": "e33ad91ffa49dd732cd962bab15d1189e90433d9088206eb11aa0a289f83e03a",
+    "references/registers.md": "e86ecc4a3128d428934b6de900364277c772a32cd135752b4c8c0de201967d2c",
+    "references/input.md": "be6b155b059ae9287b9e769f4fa3e97444786f6811ff05e0d47a9674e6f56572",
+    "references/depth.md": "0ee64bdc1ac18601c0d714730df87519df7c341ee9094d043b7aa98bf172f4a4",
+    "references/self-check.md": "f43add9d734cdee8887f7f7d6c75ad4a9edc892c48684c5c532043ecae4b63f3",
+    "references/syntax.md": "1a408f929d7259113884b3bb9002cea5e1daa822567fbd6c252502c4499ae29f"
+  },
+  "sha256": {
+    "geraltvoice2.2.0.zip": "959683f941caf61bdbad064728eb1cd6a150549a2acfe0af0d47df6b4fa16ec9",
+    "VERSION": "da65b61809819f3046ce593b9883e3bf2144ff2ab7a031932f3f3e6c70b03944",
+    "geralt-voice/SKILL.md": "c6cfafeb64121bd922616157597bde0af971fbaaaec5b010be907cad32e01457",
+    "geralt-voice/references/personas.md": "49f9d957668b17ad820dcfbfc96def4c757efeed36c74d44bd26e7c37589abcf",
+    "geralt-voice/references/editing.md": "9ed786ad008ba0796564e7491870684b7f89e2c06dc6bb6fa895bec36c71d85f",
+    "geralt-voice/references/depth.md": "4643fe92c8cf338c9648cd54f8bc057e522f5deb30281c1d24f50230c740c305",
+    "evaluation/probes/compare-2.2-vs-3.0.jsonl": "b25b01e24fb63fbbd5f0ef8486abc1f59ad968fc05bf59b772675904225a3772"
+  }
+}

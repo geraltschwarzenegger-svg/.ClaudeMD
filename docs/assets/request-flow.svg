@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="570" viewBox="0 0 1280 570" role="img" aria-labelledby="title desc"><title id="title">Как запрос становится ответом</title><desc id="desc">Схема поведения по инструкциям · внутренние шаги не выводятся в чат</desc><rect width="1280" height="570" rx="24" fill="#111622"/>
+<text x="48" y="60" font-family="DejaVu Sans,Arial,sans-serif" font-size="32" font-weight="700" fill="#f1f3f8">Как запрос становится ответом</text>
+<text x="48" y="100" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#abb8ce">Схема поведения по инструкциям · внутренние шаги не выводятся в чат</text>
+<rect x="48" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="70" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#ff9b8f">01 / Разобрать вход</text>
+<text x="70" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Твой черновик или цитата</text>
+<text x="70" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Что уже было отправлено</text>
+<text x="70" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Чего нет во вложениях</text>
+<rect x="450" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="472" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#a2caff">02 / Выбрать задачу</text>
+<text x="472" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Исправить или переписать</text>
+<text x="472" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Ответить или придумать</text>
+<text x="472" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Учитывать область правки</text>
+<rect x="852" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="874" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">03 / Настроить подачу</text>
+<text x="874" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Адресат и формат</text>
+<text x="874" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Теплота, напор, юмор</text>
+<text x="874" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Роль только по ситуации</text>
+<rect x="48" y="350" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="70" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#ff9b8f">04 / Написать</text>
+<text x="70" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Использовать данные факты</text>
+<text x="70" y="461" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Сохранить твою позицию</text>
+<text x="70" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Не сочинять обязательства</text>
+<rect x="450" y="350" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="472" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#a2caff">05 / Проверить</text>
+<text x="472" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Отрицания и неизвестное</text>
+<text x="472" y="461" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Уместность и точный URL</text>
+<text x="472" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Исполнение твоей просьбы</text>
+<rect x="852" y="350" width="378" height="190" rx="16" fill="#1c2433"/>
+<text x="874" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">06 / Вернуть</text>
+<text x="874" y="430" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Один копируемый текст</text>
+<text x="874" y="461" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Варианты по запросу</text>
+<text x="874" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Разбор, если он нужен</text>
+</svg>
