@@ -1,0 +1,8 @@
+unpacked/
+__pycache__/
+*.pyc
+.venv/
+private/
+evaluation/local/
+.env
+!.env.example

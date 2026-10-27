@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-27",
+  "version": "3.0.0-rc.1",
+  "method": "Fresh Codex subagents; task inputs only; outputs reviewed by the implementing assistant. No blind human A/B.",
+  "model": "inherited session model; exact snapshot and sampling parameters not exposed",
+  "outputs": 32,
+  "unique_scenarios": 31,
+  "stages": {
+    "preliminary": {
+      "files": [
+        "batch-a.jsonl",
+        "batch-b.jsonl"
+      ],
+      "source_sha256": {
+        "geralt-voice/SKILL.md": "330fd6ec515e25e009cc3da30748c3e637e0261c07d4cb2a383a37409468373f",
+        "geralt-voice/references/conversation.md": "ea91a41ea6169a908c92485225fec597ded31c38492f3f364031c24322c8fa19",
+        "geralt-voice/references/editing.md": "9ed786ad008ba0796564e7491870684b7f89e2c06dc6bb6fa895bec36c71d85f",
+        "geralt-voice/references/examples.md": "f9921ff53298a7b7eb1043913c5b928d938926d0bc0d9b51e0a83f24cce508ed",
+        "geralt-voice/references/humor-conflict.md": "f7bd698220c74674d2f93cc6ffe6e8c700a0b2afa678aa0c89e4d96fb0cbaaee",
+        "geralt-voice/references/personas.md": "4617a8055a071d7220cfc7fbb7ada0998631768e1cad3df399e2284949930990",
+        "geralt-voice/references/roles.md": "db9aaeee35fa48cf6d121c8b6990b0cdf0eeab67c8d9d64758f2d97e0ba9d5b8",
+        "geralt-voice/references/romance.md": "7c3cd517f07b192d28e284b8c5fb8c3dea2c8b96de8ab889d44adeb20acb1a29",
+        "geralt-voice/references/voice-profile.md": "37df1e72088490206774d6484469da3f395ad85e0ec452a1cac3f1fd74940526"
+      }
+    },
+    "final": {
+      "files": [
+        "batch-c.jsonl"
+      ],
+      "source_sha256": {
+        "geralt-voice/SKILL.md": "75b0031636867bf13ec56dfcd292069098a65f7c75ab322142c53e94859b0593",
+        "geralt-voice/references/conversation.md": "ea91a41ea6169a908c92485225fec597ded31c38492f3f364031c24322c8fa19",
+        "geralt-voice/references/depth.md": "4fb1d76940d525d3fc907ce050930677feed011199a295210889f9938f472971",
+        "geralt-voice/references/editing.md": "9ed786ad008ba0796564e7491870684b7f89e2c06dc6bb6fa895bec36c71d85f",
+        "geralt-voice/references/examples.md": "7b066c3d725887e4c6201b0fc558654e1cb6b71412b40d6c4e86d73df6d40c0d",
+        "geralt-voice/references/humor-conflict.md": "f7bd698220c74674d2f93cc6ffe6e8c700a0b2afa678aa0c89e4d96fb0cbaaee",
+        "geralt-voice/references/personas.md": "4617a8055a071d7220cfc7fbb7ada0998631768e1cad3df399e2284949930990",
+        "geralt-voice/references/roles.md": "db9aaeee35fa48cf6d121c8b6990b0cdf0eeab67c8d9d64758f2d97e0ba9d5b8",
+        "geralt-voice/references/romance.md": "7c3cd517f07b192d28e284b8c5fb8c3dea2c8b96de8ab889d44adeb20acb1a29",
+        "geralt-voice/references/voice-profile.md": "37df1e72088490206774d6484469da3f395ad85e0ec452a1cac3f1fd74940526"
+      }
+    }
+  },
+  "cross_provider_ab_test": false,
+  "user_acceptance_measured": false
+}

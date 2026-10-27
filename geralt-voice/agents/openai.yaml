@@ -1,0 +1,4 @@
+interface:
+  display_name: "Geralt Voice"
+  short_description: "Живые сообщения твоим голосом для любой ситуации"
+  default_prompt: "Используй $geralt-voice, чтобы написать ответ моим голосом по контексту"

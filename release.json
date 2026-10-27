@@ -1,0 +1,9 @@
+{
+  "version": "3.0.0-rc.1",
+  "date": "2026-10-27",
+  "status": "release-candidate",
+  "examples": 96,
+  "evaluation_cases": 48,
+  "roles": 24,
+  "cross_provider_ab_test": "not_run"
+}
