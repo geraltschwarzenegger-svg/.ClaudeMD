@@ -70,6 +70,68 @@ def package_entries(root: Path) -> dict[str, bytes]:
     return entries
 
 
+def plugin_entries(root: Path, platform: str) -> dict[str, bytes]:
+    """Keep identical skill sources inside host-specific plugin layouts."""
+    if platform not in {'codex', 'claude'}:
+        raise ValueError('Unknown plugin platform: ' + platform)
+    version = (root / 'VERSION').read_text().strip()
+    manifest = {
+        'name': 'geralt-voice',
+        'version': version,
+        'description': 'Персональный голос для сообщений: редактура, поддержка, юмор и уверенная подача.',
+        'author': {'name': 'geraltschwarzenegger-svg'},
+        'homepage': 'https://github.com/geraltschwarzenegger-svg/.ClaudeMD#readme',
+        'repository': 'https://github.com/geraltschwarzenegger-svg/.ClaudeMD',
+    }
+    if platform == 'codex':
+        manifest['skills'] = './skills/'
+        manifest['interface'] = {
+            'displayName': 'Geralt Voice',
+            'shortDescription': 'Сообщения твоим голосом: редактура, юмор и поддержка',
+            'defaultPrompt': ['Используй Geralt Voice, чтобы написать ответ моим голосом'],
+        }
+    entries = {'skills/' + name: data for name, data in package_entries(root).items()
+               if platform == 'codex' or not name.endswith('/agents/openai.yaml')}
+    entries[f'.{platform}-plugin/plugin.json'] = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode()
+    entries['README.md'] = (
+        f'# Geralt Voice {version} · {platform}\n\n'
+        'Плагин содержит skills/geralt-voice/SKILL.md и все справочники.\n'
+        'Подключите через механизм плагинов выбранной среды.\n'
+        'В обычном чате используйте отдельную текстовую инструкцию из репозитория.\n'
+        '\nПосле подключения попросите применить Geralt Voice и пришлите свой черновик '
+        'или контекст разговора. Можно исправить только ошибки, переписать текст, '
+        'подготовить ответ, добавить юмор или выбрать более тёплую либо твёрдую подачу. '
+        'Указывайте адресата и важные ограничения. Неизвестные факты и обещания '
+        'не должны добавляться в сообщение.\n'
+        '\nДля плагина Codex выберите ZIP Codex в окне добавления плагина. '
+        'Для Claude Code распакуйте ZIP Claude и используйте параметр --plugin-dir. '
+        'Загрузка ZIP в обычный чат не устанавливает плагин. '
+        'Отдельные ключи API, серверы MCP и установка Python для использования '
+        'этого набора инструкций не требуются.\n'
+        'Инструкция установки: https://github.com/geraltschwarzenegger-svg/.ClaudeMD/blob/main/docs/INSTALLATION.md\n'
+    ).encode()
+    return entries
+
+
+def release_archives(root: Path) -> dict[str, dict[str, bytes]]:
+    version = (root / 'VERSION').read_text().strip()
+    return {
+        f'geralt-voice-{version}.zip': package_entries(root),
+        f'geralt-voice-codex-{version}.zip': plugin_entries(root, 'codex'),
+        f'geralt-voice-claude-{version}.zip': plugin_entries(root, 'claude'),
+    }
+
+
+def write_zip(target: Path, entries: dict[str, bytes]) -> None:
+    with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for name, payload in sorted(entries.items()):
+            info = zipfile.ZipInfo(name, (2026, 10, 27, 0, 0, 0))
+            info.create_system = 3
+            info.external_attr = 0o100644 << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            z.writestr(info, payload, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
+
+
 def build(root: Path = ROOT) -> Path:
     for name, text in generated_texts(root).items():
         p = root / name
@@ -78,16 +140,17 @@ def build(root: Path = ROOT) -> Path:
     version = (root / 'VERSION').read_text().strip()
     target = root / 'dist' / f'geralt-voice-{version}.zip'
     target.parent.mkdir(exist_ok=True)
-    with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        for name, payload in package_entries(root).items():
-            info = zipfile.ZipInfo(name, (2026, 10, 27, 0, 0, 0))
-            info.create_system = 3
-            info.external_attr = 0o100644 << 16
-            info.compress_type = zipfile.ZIP_DEFLATED
-            z.writestr(info, payload, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
-    (target.parent / 'SHA256SUMS').write_text(f'{hashlib.sha256(target.read_bytes()).hexdigest()}  {target.name}\n')
+    sums = []
+    for name, entries in release_archives(root).items():
+        artifact = target.parent / name
+        write_zip(artifact, entries)
+        sums.append(f'{hashlib.sha256(artifact.read_bytes()).hexdigest()}  {name}\n')
+    (target.parent / 'SHA256SUMS').write_text(''.join(sums))
     # Stable download name; VERSION inside the archive identifies the exact RC.
     shutil.copyfile(target, root / 'Geralt Voice 3.0.0-rc.zip')
+    for platform in ['codex', 'claude']:
+        shutil.copyfile(target.parent / f'geralt-voice-{platform}-{version}.zip',
+                        root / f'Geralt Voice {platform.title()}.zip')
     return target
 
 

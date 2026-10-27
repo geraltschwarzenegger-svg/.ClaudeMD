@@ -14,7 +14,7 @@ from urllib.parse import unquote, urlsplit
 
 import yaml
 
-from build import ROOT, INSTALLABLE_FILES, generated_texts, package_entries, records
+from build import ROOT, INSTALLABLE_FILES, generated_texts, package_entries, records, release_archives
 
 
 class UniqueLoader(yaml.SafeLoader):
@@ -163,28 +163,35 @@ def validate(root: Path = ROOT, *, archive=False, source_only=False) -> list[str
         except (ET.ParseError, OSError):
             issue('Claude export is not well-formed XML')
     if archive:
-        target = root / 'dist' / f'geralt-voice-{version}.zip'
-        if not target.is_file():
-            issue('missing release ZIP')
-        else:
-            download = root / 'Geralt Voice 3.0.0-rc.zip'
+        expected_archives = release_archives(root)
+        sums = []
+        aliases = {
+            f'geralt-voice-{version}.zip': 'Geralt Voice 3.0.0-rc.zip',
+            f'geralt-voice-codex-{version}.zip': 'Geralt Voice Codex.zip',
+            f'geralt-voice-claude-{version}.zip': 'Geralt Voice Claude.zip',
+        }
+        for filename, expected in expected_archives.items():
+            target = root / 'dist' / filename
+            if not target.is_file():
+                issue('missing release ZIP: ' + filename)
+                continue
+            download = root / aliases[filename]
             if not download.is_file() or download.read_bytes() != target.read_bytes():
-                issue('root download ZIP missing or differs from release ZIP')
+                issue('root download ZIP missing or differs from release ZIP: ' + filename)
             try:
                 with zipfile.ZipFile(target) as z:
-                    expected = package_entries(root)
                     if len(z.namelist()) != len(set(z.namelist())) or set(z.namelist()) != set(expected):
-                        issue('ZIP inventory mismatch')
+                        issue('ZIP inventory mismatch: ' + filename)
                     for name, payload in expected.items():
                         if name not in z.namelist() or z.read(name) != payload:
-                            issue('ZIP content mismatch: ' + name)
+                            issue('ZIP content mismatch: ' + filename + ': ' + name)
                     if z.testzip() is not None:
-                        issue('ZIP CRC failure')
-                expected_sum = f'{hashlib.sha256(target.read_bytes()).hexdigest()}  {target.name}\n'
-                if (root / 'dist/SHA256SUMS').read_text() != expected_sum:
-                    issue('checksum mismatch')
+                        issue('ZIP CRC failure: ' + filename)
+                sums.append(f'{hashlib.sha256(target.read_bytes()).hexdigest()}  {target.name}\n')
             except (zipfile.BadZipFile, OSError, KeyError) as e:
                 issue('archive error: ' + str(e))
+        if (root / 'dist/SHA256SUMS').read_text() != ''.join(sums):
+            issue('checksum mismatch')
     return errors
 
 

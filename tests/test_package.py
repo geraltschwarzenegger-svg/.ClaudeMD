@@ -1,11 +1,13 @@
 import hashlib
 import json
+import re
 import shutil
 import sys
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -45,6 +47,58 @@ class PackageTests(unittest.TestCase):
     def test_root_download_matches_versioned_archive(self):
         archive = build(self.root)
         self.assertEqual((self.root/'Geralt Voice 3.0.0-rc.zip').read_bytes(), archive.read_bytes())
+    def test_codex_plugin_import_layout(self):
+        with zipfile.ZipFile(self.root/'Geralt Voice Codex.zip') as z:
+            manifest = json.loads(z.read('.codex-plugin/plugin.json'))
+            self.assertEqual(manifest['name'], 'geralt-voice')
+            self.assertEqual(manifest['version'], (self.root/'VERSION').read_text().strip())
+            self.assertEqual(manifest['skills'], './skills/')
+            self.assertIn('skills/geralt-voice/SKILL.md', z.namelist())
+            self.assertNotIn('.claude-plugin/plugin.json', z.namelist())
+            self.assertEqual(z.read('skills/geralt-voice/agents/openai.yaml'),
+                             (self.root/'geralt-voice/agents/openai.yaml').read_bytes())
+    def test_claude_plugin_import_layout(self):
+        with zipfile.ZipFile(self.root/'Geralt Voice Claude.zip') as z:
+            manifest = json.loads(z.read('.claude-plugin/plugin.json'))
+            self.assertEqual(manifest['name'], 'geralt-voice')
+            self.assertEqual(manifest['version'], (self.root/'VERSION').read_text().strip())
+            self.assertIn('skills/geralt-voice/SKILL.md', z.namelist())
+            self.assertNotIn('.codex-plugin/plugin.json', z.namelist())
+            self.assertNotIn('skills/geralt-voice/agents/openai.yaml', z.namelist())
+    def test_plugin_skill_sources_and_relative_links(self):
+        for platform in ['Codex', 'Claude']:
+            with zipfile.ZipFile(self.root/f'Geralt Voice {platform}.zip') as z:
+                self.assertFalse(any('evaluation/' in n or 'private/' in n for n in z.namelist()))
+                for name in z.namelist():
+                    if name.startswith('skills/geralt-voice/'):
+                        self.assertEqual(z.read(name), (self.root/name.removeprefix('skills/')).read_bytes())
+                    if name.endswith('.md'):
+                        for href in re.findall(r'\[[^\]]*\]\(([^)]+)\)', z.read(name).decode()):
+                            parsed = urlsplit(href)
+                            if not parsed.scheme and not parsed.netloc and parsed.path:
+                                self.assertIn((Path(name).parent/parsed.path).as_posix(), z.namelist())
+    def test_all_release_zips_are_reproducible(self):
+        first = {p.name:p.read_bytes() for p in (self.root/'dist').glob('*.zip')}
+        build(self.root)
+        self.assertEqual(first, {p.name:p.read_bytes() for p in (self.root/'dist').glob('*.zip')})
+    def test_corrupt_codex_manifest_is_rejected(self):
+        p = self.root/'Geralt Voice Codex.zip'
+        version = (self.root/'VERSION').read_text().strip()
+        with zipfile.ZipFile(p) as z:
+            entries = {n:z.read(n) for n in z.namelist()}
+        entries['.codex-plugin/plugin.json'] = b'not json'
+        target = self.root/'dist'/f'geralt-voice-codex-{version}.zip'
+        with zipfile.ZipFile(target, 'w') as z:
+            for name,data in entries.items(): z.writestr(name,data)
+        self.fails('ZIP content mismatch', archive=True)
+    def test_missing_claude_manifest_is_rejected(self):
+        version = (self.root/'VERSION').read_text().strip()
+        target = self.root/'dist'/f'geralt-voice-claude-{version}.zip'
+        with zipfile.ZipFile(target) as z:
+            entries = {n:z.read(n) for n in z.namelist() if n!='.claude-plugin/plugin.json'}
+        with zipfile.ZipFile(target, 'w') as z:
+            for name,data in entries.items(): z.writestr(name,data)
+        self.fails('ZIP inventory mismatch', archive=True)
     def test_unexpected_installable_file(self):
         (self.root/'geralt-voice/private-log.txt').write_text('private synthetic marker')
         self.fails('unexpected installable file')

@@ -3,7 +3,7 @@
 <text x="48" y="100" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#abb8ce">Разные уровни доказательств отвечают на разные вопросы</text>
 <rect x="48" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
 <text x="70" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#ff9b8f">Структура</text>
-<text x="70" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">24 unit-теста</text>
+<text x="70" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">30 unit-тестов</text>
 <text x="70" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Ссылки, YAML, XML, ZIP</text>
 <text x="70" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Это не оценка естественности</text>
 <rect x="450" y="135" width="378" height="190" rx="16" fill="#1c2433"/>

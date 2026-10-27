@@ -12,8 +12,8 @@
 <text x="472" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Использовать поле инструкций</text>
 <text x="472" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Дать материал для ответа</text>
 <rect x="852" y="135" width="378" height="190" rx="16" fill="#1c2433"/>
-<text x="874" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">Skills</text>
-<text x="874" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Скачать актуальный ZIP</text>
-<text x="874" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Установить через свою среду</text>
-<text x="874" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Проверить версию в VERSION</text>
+<text x="874" y="173" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" fill="#b7dda3">Плагины</text>
+<text x="874" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Codex: ZIP Codex</text>
+<text x="874" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Claude: ZIP Claude</text>
+<text x="874" y="277" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#f1f3f8">Манифест и skills/ в корне</text>
 </svg>
