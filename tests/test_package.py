@@ -99,6 +99,15 @@ class PackageTests(unittest.TestCase):
         with zipfile.ZipFile(target, 'w') as z:
             for name,data in entries.items(): z.writestr(name,data)
         self.fails('ZIP inventory mismatch', archive=True)
+    def test_pressure_bank_rejects_false_provenance(self):
+        self.edit('geralt-voice/references/pressure.jsonl', lambda s:s.replace('"user_accepted": false','"user_accepted": true',1))
+        self.fails('pressure bank must declare synthetic provenance')
+    def test_pressure_bank_rejects_duplicate_text(self):
+        p=self.root/'geralt-voice/references/pressure.jsonl'
+        rows=[json.loads(s) for s in p.read_text().splitlines()]
+        rows[1]['text']=rows[0]['text']
+        p.write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows))
+        self.fails('duplicate pressure text')
     def test_unexpected_installable_file(self):
         (self.root/'geralt-voice/private-log.txt').write_text('private synthetic marker')
         self.fails('unexpected installable file')

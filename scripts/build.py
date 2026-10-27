@@ -11,11 +11,11 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-REFERENCE_NAMES = ('voice-profile', 'editing', 'conversation', 'romance', 'humor-conflict', 'personas', 'depth')
+REFERENCE_NAMES = ('voice-profile', 'editing', 'conversation', 'romance', 'humor-conflict', 'personas', 'depth', 'argument')
 INSTALLABLE_FILES = ('SKILL.md', 'VERSION', 'agents/openai.yaml',
                      *(f'references/{n}.md' for n in REFERENCE_NAMES),
                      'references/roles.md', 'references/roles.json',
-                     'references/examples.md', 'references/examples.jsonl')
+                     'references/examples.md', 'references/examples.jsonl', 'references/pressure.md', 'references/pressure.jsonl')
 
 
 def records(path: Path) -> list[dict]:
@@ -27,6 +27,14 @@ def generated_texts(root: Path) -> dict[str, str]:
     ref = root / 'geralt-voice/references'
     examples = records(ref / 'examples.jsonl')
     roles = json.loads((ref / 'roles.json').read_text(encoding='utf-8'))
+    pressure = records(ref / 'pressure.jsonl')
+    pressure_md = ['# Банк жёсткой подачи', '',
+                   '80 авторских заготовок, не цитаты реальных людей. Применять только к подходящему контексту. Принципы: [argument.md](argument.md).', '']
+    for move in dict.fromkeys(row['move'] for row in pressure):
+        pressure_md += ['## ' + move, '', 'Когда: ' + next(row['use_when'] for row in pressure if row['move'] == move), '']
+        for row in pressure:
+            if row['move'] == move:
+                pressure_md += ['### ' + row['id'], '', row['text'], '']
     groups = list(dict.fromkeys(x['category'] for x in examples))
     bank = ['# Авторские примеры', '', 'Все случаи придуманы для этого выпуска. Они не являются логами, цитатами стримера или подтверждёнными принятыми текстами пользователя.', '',
             '## Оглавление', '']
@@ -52,8 +60,9 @@ def generated_texts(root: Path) -> dict[str, str]:
     claude = (f'<geralt_voice version="{version}">\n<instructions>\n' + html.escape('\n\n'.join(sections + ['\n'.join(role_md)]), quote=False)
               + '\n</instructions>\n<examples provenance="synthetic">\n' + html.escape('\n'.join(demo), quote=False) + '\n</examples>\n</geralt_voice>\n')
     quick = f'# Geralt Voice {version}: компактное ядро\n\n{core}\n'
-    metadata = {'version': version, 'date': '2026-10-27', 'status': 'release-candidate', 'examples': len(examples), 'evaluation_cases': len(records(root / 'evaluation/cases.jsonl')), 'roles': len(roles), 'cross_provider_ab_test': 'not_run'}
-    return {'geralt-voice/references/examples.md': '\n'.join(bank).rstrip() + '\n',
+    metadata = {'version': version, 'date': '2026-10-27', 'status': 'release-candidate', 'examples': len(examples), 'evaluation_cases': len(records(root / 'evaluation/cases.jsonl')), 'roles': len(roles), 'pressure_phrases': len(pressure), 'cross_provider_ab_test': 'not_run'}
+    return {'geralt-voice/references/pressure.md': '\n'.join(pressure_md).rstrip() + '\n',
+            'geralt-voice/references/examples.md': '\n'.join(bank).rstrip() + '\n',
             'geralt-voice/references/roles.md': '\n'.join(role_md), 'prompts/GPT.md': gpt,
             'prompts/CLAUDE.md': claude, 'prompts/QUICK.md': quick,
             'release.json': json.dumps(metadata, ensure_ascii=False, indent=2) + '\n',

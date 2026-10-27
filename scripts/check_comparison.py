@@ -4,6 +4,7 @@ import hashlib
 import json
 import zipfile
 from pathlib import Path
+from probe_paths import recorded_source
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -12,7 +13,7 @@ def validate(root=ROOT):
     errors=[]
     meta=json.loads((root/'evaluation/probes/compare-metadata.json').read_text())
     for name,expected in meta['sha256'].items():
-        p=root/name
+        p=recorded_source(root, name, meta['versions'][-1])
         if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=expected:
             errors.append('changed recorded file: '+name)
     with zipfile.ZipFile(root/'geraltvoice2.2.0.zip') as archive:

@@ -1,9 +1,10 @@
 {
-  "version": "3.0.0-rc.2",
+  "version": "3.0.0-rc.3",
   "date": "2026-10-27",
   "status": "release-candidate",
-  "examples": 108,
-  "evaluation_cases": 64,
+  "examples": 120,
+  "evaluation_cases": 76,
   "roles": 24,
+  "pressure_phrases": 80,
   "cross_provider_ab_test": "not_run"
 }

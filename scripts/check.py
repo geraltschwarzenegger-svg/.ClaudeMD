@@ -48,7 +48,7 @@ def validate(root: Path = ROOT, *, archive=False, source_only=False) -> list[str
     errors = []
     def issue(message):
         errors.append(message)
-    required = ['VERSION', 'README.md', 'CHANGELOG.md', 'BENCHMARK.md', 'geralt-voice/SKILL.md', 'geralt-voice/agents/openai.yaml', 'evaluation/cases.jsonl', 'geralt-voice/references/examples.jsonl', 'geralt-voice/references/roles.json']
+    required = ['geralt-voice/references/pressure.jsonl', 'geralt-voice/references/argument.md', 'VERSION', 'README.md', 'CHANGELOG.md', 'BENCHMARK.md', 'geralt-voice/SKILL.md', 'geralt-voice/agents/openai.yaml', 'evaluation/cases.jsonl', 'geralt-voice/references/examples.jsonl', 'geralt-voice/references/roles.json']
     for name in required:
         if not (root / name).is_file():
             issue('missing file: ' + name)
@@ -116,6 +116,18 @@ def validate(root: Path = ROOT, *, archive=False, source_only=False) -> list[str
         issue('evaluation input leaked into examples')
     if len(demos) < 96 or len(cases) < 48 or len(roles) < 24:
         issue('release dataset coverage below contract')
+    pressure = records(root / 'geralt-voice/references/pressure.jsonl')
+    if len(pressure) != 80 or len({row.get('id') for row in pressure}) != 80:
+        issue('pressure bank must have 80 unique records')
+    for row in pressure:
+        if set(row) != {'id','move','level','use_when','text','provenance','user_accepted'}:
+            issue('pressure record schema mismatch')
+        elif row['provenance'] != 'synthetic' or row['user_accepted'] is not False:
+            issue('pressure bank must declare synthetic provenance')
+        elif any(not isinstance(row[k],str) or not row[k].strip() for k in ['id','move','level','use_when','text']):
+            issue('empty pressure record')
+    if len({row.get('text') for row in pressure}) != len(pressure):
+        issue('duplicate pressure text')
     # A repeated long normative list item is meaningful; quotations/examples are excluded.
     seen = {}
     normative = [root / 'geralt-voice/SKILL.md', *sorted((root / 'geralt-voice/references').glob('*.md'))]

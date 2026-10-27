@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
-"""Check recorded rc.2 provenance, coverage and input integrity, not text quality."""
+"""Check current and historical probe provenance, coverage and input integrity."""
 import hashlib
 import json
 from pathlib import Path
+from probe_paths import recorded_source
 
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def validate(root=ROOT):
+def validate(root=ROOT, metadata="rc2-metadata.json"):
     errors = []
-    meta = json.loads((root / 'evaluation/probes/rc2-metadata.json').read_text())
+    meta = json.loads((root / 'evaluation/probes' / metadata).read_text())
     for name, expected in meta['sha256'].items():
-        path = root / name
+        path = recorded_source(root, name, meta['version'])
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
             errors.append('changed or missing recorded file: ' + name)
-    cases = {row['id']: row for row in map(json.loads, (root/'evaluation/cases.jsonl').read_text().splitlines())}
-    outputs = list(map(json.loads, (root/'evaluation/probes/rc2-author.jsonl').read_text().splitlines()))
+    cases = {row['id']: row for row in map(json.loads, recorded_source(root, 'evaluation/cases.jsonl', meta['version']).read_text().splitlines())}
+    outputs = list(map(json.loads, (root / meta.get('outputs_file', 'evaluation/probes/rc2-author.jsonl')).read_text().splitlines()))
     ids = [row['id'] for row in outputs]
     if len(ids) != len(set(ids)) or len(ids) != meta['outputs']:
         errors.append('duplicate IDs or wrong output count')
@@ -34,8 +35,8 @@ def validate(root=ROOT):
 
 
 if __name__ == '__main__':
-    errors = validate()
+    errors = validate() + validate(metadata="rc3-metadata.json")
     for error in errors:
         print('ERROR:', error)
-    print('FAIL: recorded probes' if errors else 'PASS: 24 recorded outputs, matching inputs and hashes; not a quality score')
+    print('FAIL: recorded probes' if errors else 'PASS: 24 historical rc.2 and 12 rc.3 outputs, matching inputs and hashes; not a quality score')
     raise SystemExit(bool(errors))
